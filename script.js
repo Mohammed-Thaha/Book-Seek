@@ -1,3 +1,4 @@
+// The code was written by Mohammed Thaha
 const height = window.innerHeight;
 const width = window.innerWidth;
 var book_title=[],book_author=[],book_publisher=[],image_links=[],book_published_date=[],book_descript=[]; 
