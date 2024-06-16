@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    list-style: none;
+    /* outline: 1px solid red;  -->made this to see the alignment */
+}
+/* root color */
+:root{
+    --white:#fff;
+    --bg-color:#020027;
+    --black:black;
+    --key-letter:#008080;
+    --btn-color:rgb(248, 57, 89);
+}
+/* search design */
+.search-books{
+    height: 100vh;
+    background-color:var(--bg-color);
+}
+.container{
+    padding: 20px 0px;
+    background-color:var(--bg-color);
+}
+.search {
+    height:30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(135deg, #ff8a00, #e52e71); */
+    background-color:var(--bg-color);
+}
+.search-align {
+    border-radius:10px;
+    padding: 0 10px;
+    background-color:var(--white);
+    display: flex;
+}
+
+.search-align input {
+    /* width: 80%;
+    max-width: 500px; */
+    width: 500px;
+    height: 50px;
+    padding: 0px 20px;
+    font-size: 20px;
+    outline: 0;
+    border: 0;
+}
+input::placeholder,input {
+    font-size:18px;
+    background-color:var(--white);
+}
+.search-btn i,.reset-btn i{
+    font-size: 22px;    
+    background:var(--white);
+    color:var(--black);
+}
+.search-btn , .reset-btn{
+    width: 30%; 
+    max-width: 80px;
+    background-color:var(--white);
+    color: var(--black);
+    height: 50px;
+    border: 0;
+    cursor: pointer;
+}
+
+/* end of search */
+
+/* card design */
+#text{
+    margin-top:50px;
+    text-align: center;
+    background-image: url("images/bgc-word.gif");background-position: center;
+    background-size: cover;background-clip: text;
+    color: transparent;
+    font-size: 30px;
+}
+.card-div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:20px;
+}
+.card{
+    width:250px;
+    height:300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:var(--white);
+    /* border: 1px solid red; */
+    text-align: center;
+    backdrop-filter: blur(14px); 
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 12px;
+}
+.card:hover{
+    box-shadow:teal 0px 20px 30px -10px;
+}
+.title{
+    font-size: 15px;
+    margin:10px 0px;
+}
+.card-div img{
+    width:150px;
+    height:150px;
+    border-radius: 12px;
+}
+.card button{
+    padding:10px 5px;
+   border-radius: 12px;
+   outline: 0;
+   color:var(--white);
+   /* background-color: var(--key-letter); */
+   border:2px solid var(--key-letter);
+   background: transparent;
+}
+.card button:hover{
+    background-color: var(--key-letter);
+    transition: .1s ease-in-out;
+}
+
+/* pop up div design */
+.popup-div{
+    border:1px solid var(--black);
+    position: relative;
+}
+.popup-div img{
+    width: 200px;
+    height:100px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+.popup-container p{
+    overflow:auto;
+}
+.popup-container{
+    background-color:var(--bg-color);
+    color:var(--white);
+    width:500px;height: 400px;
+    border-radius:12px;
+    display: flex;flex-direction: column;
+    justify-content: center;align-items: center;
+    position: fixed; top:60%;left:50%;
+    transform:translate(-50%,-50%);padding:50px;
+    /* box-shadow: 0 5px 30px rgba(0,0,0,.30); */
+}
+
+.popup-container button{
+    margin-top:10px;
+    position: fixed;
+    top: 10px;right: 10px;
+    background-color:var(--bg-color);
+    outline: 0;
+    border:0;
+}
+.popup-container span{
+    margin-top:10px;
+}
+.popup-container h1{
+    font-size: 18px;
+    color:teal;
+}
+.fa-solid{
+    font-size:30px;
+    margin-left: 10px;
+    color:var(--white);
+}
+.date{
+    color:var(--key-letter);
+    padding-bottom: 10px;
+}
+.publish{
+    color:var(--btn-color);
+    font-size: 18px;
+}
+/* for mobile view i created media query  */
+
+@media only screen and (max-width: 600px) {
+    .search{
+        height: 30vh;
+    }
+    .search-align input {
+        width: 100%; 
+        max-width: none;
+    }
+    
+    .search-btn, .reset-btn {
+        width: 10%; 
+        max-width: none; 
+    }
+    .reset-btn{
+        padding-left:10px;
+    }
+    i{
+        font-size: 10px;
+        color: black;
+    }
+    .popup-container {
+        width: 90%;
+        height:300px;
+        max-width: 350px;
+        padding: 20px;
+    }
+}
