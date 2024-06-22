@@ -182,6 +182,9 @@ input::placeholder,input {
     color:var(--btn-color);
     font-size: 18px;
 }
+.fa-xmark:hover{
+cursor:pointer;
+}
 /* for mobile view i created media query  */
 
 @media only screen and (max-width: 600px) {
