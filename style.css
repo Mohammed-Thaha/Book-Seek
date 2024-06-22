@@ -172,6 +172,7 @@ input::placeholder,input {
     font-size:30px;
     margin-left: 10px;
     color:var(--white);
+    cursor:pointer;
 }
 .date{
     color:var(--key-letter);
