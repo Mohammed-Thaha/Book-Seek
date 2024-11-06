@@ -1,51 +1,61 @@
-// The code was written by Mohammed Thaha
 const height = window.innerHeight;
 const width = window.innerWidth;
-var book_title=[],book_author=[],book_publisher=[],image_links=[],book_published_date=[],book_descript=[]; 
+var book_title = [], book_author = [], book_publisher = [], image_links = [], book_published_date = [], book_descript = [];
 var url;
-let search_button=document.getElementById("search-btn");
-let reset_button=document.getElementById("reset-btn");
-// console.log(reset_button)
-search_button.addEventListener("click",()=>{
-    //console.log(user_input);
-    let user_input=document.getElementById("user_input").value.trim();
-    if(!user_input){
+
+let search_button = document.getElementById("search-btn");
+let reset_button = document.getElementById("reset-btn");
+let user_input = document.getElementById("user_input");
+let mark_btn=document.getElementById("xmark-btn");
+
+user_input.addEventListener("keypress", function(event) {
+    if (event.key === 'Enter') {
+        performSearch();
+    }
+});
+
+search_button.addEventListener("click", function() {
+    performSearch();
+});
+
+function performSearch() {
+    let userInputValue = user_input.value.trim();
+    mark_btn.classList.add("fa-xmark");
+    if (!userInputValue) {
         alert("Please enter a search term.");
         return;
-    } 
-    let safe_the_input=sanitizeInput(user_input)
-    url="https://www.googleapis.com/books/v1/volumes?q="+encodeURIComponent(safe_the_input);
-//to get the url from the search bar which i created
-var container_text=document.getElementById("text");
-fetch(url)
-.then(response => response.json())
-.then(data =>{
-    for(let i=0;i<10;i++){
-        if (!Wrong_terms(data.items[i].volumeInfo.title) && !Wrong_terms(data.items[i].volumeInfo.title)) {
-            let access_author_one = data.items[i].volumeInfo.authors[0];
-            book_author.push(escapeHtml(access_author_one));
-            book_title.push(escapeHtml(data.items[i].volumeInfo.title));
-            book_descript.push(escapeHtml(data.items[i].volumeInfo.description ? data.items[i].volumeInfo.description : 'No description available'));
-            image_links.push(data.items[i].volumeInfo.imageLinks ? data.items[i].volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/150'); 
-            book_publisher.push(escapeHtml(data.items[i].volumeInfo.publisher ? data.items[i].volumeInfo.publisher : 'Unknown Publisher'));
-            book_published_date.push(escapeHtml(data.items[i].volumeInfo.publishedDate ? data.items[i].volumeInfo.publishedDate : 'Unknown'));
-     }else{
-            alert("Warning");
-            location.reload();
-            break;
-        }
     }
-    container_text.remove();
-    // console.log(book_link)
-    test_the_code(book_title,image_links,book_author,book_publisher,book_descript,book_published_date);
-}
 
-) 
-.catch(error => {
-    console.error('Error fetching data:', error);
-    alert('Error fetching data. Please try again later.');
-}); 
-})
+    let safeInput = sanitizeInput(userInputValue);
+    url = "https://www.googleapis.com/books/v1/volumes?q=" + encodeURIComponent(safeInput);
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            for (let i = 0; i < 10; i++) {
+                if (!Wrong_terms(data.items[i].volumeInfo.title) && !Wrong_terms(data.items[i].volumeInfo.title)) {
+                    let access_author_one = data.items[i].volumeInfo.authors[0];
+                    book_author.push(escapeHtml(access_author_one));
+                    book_title.push(escapeHtml(data.items[i].volumeInfo.title));
+                    book_descript.push(escapeHtml(data.items[i].volumeInfo.description ? data.items[i].volumeInfo.description : 'No description available'));
+                    image_links.push(data.items[i].volumeInfo.imageLinks ? data.items[i].volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/150');
+                    book_publisher.push(escapeHtml(data.items[i].volumeInfo.publisher ? data.items[i].volumeInfo.publisher : 'Unknown Publisher'));
+                    book_published_date.push(escapeHtml(data.items[i].volumeInfo.publishedDate ? data.items[i].volumeInfo.publishedDate : 'Unknown'));
+                } else {
+                    alert("Warning");
+                    location.reload();
+                    break;
+                }
+            }
+            document.getElementById("text").remove();
+            test_the_code(book_title, image_links, book_author, book_publisher, book_descript, book_published_date);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            alert('Error fetching data. Please try again later.');
+            location.reload();
+        });
+}
 //bt-->book title
 //image-->book image
 //ba-->book author
@@ -102,6 +112,7 @@ function display_description(Title1,image1,author,publish,date,descript){
     display_div.appendChild(display_div1)
     // create a tag to display the content in div
     let img=document.createElement("img");
+    img.classList.add("book-img");
     let h1=document.createElement("h1");
     h1.classList.add("author");
     let pb=document.createElement("span");
