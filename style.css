@@ -7,30 +7,40 @@
     text-decoration: none;
     scroll-behavior: smooth;
     list-style: none;
-    /* outline: 1px solid red;  -->made this to see the alignment */
 }
 /* root color */
 :root{
     --white:#fff;
-    --bg-color:#020027;
+    --bg-color:#7D2CE0;       /*#020027;*/
     --black:black;
-    --key-letter:#008080;
+    --key-letter:#4C04A4;               /* #008080; */
     --btn-color:rgb(248, 57, 89);
+    --new-font-color:#4C04A4;
+}
+.logo>h1{
+    margin-left:20px;
+    margin-top:20px;
+    font-size: 28px;
+    color:white;    
 }
 /* search design */
 .search-books{
-    height: 100vh;
+    min-height: 100vh;
     background-color:var(--bg-color);
+    display: flex;
+    flex-direction: column;
 }
+
 .container{
     padding: 20px 0px;
-    background-color:var(--bg-color);
+    /* background-color:var(--bg-color); */
 }
-.search {
+.search{
     height:30vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius:14px;
     /* background: linear-gradient(135deg, #ff8a00, #e52e71); */
     background-color:var(--bg-color);
 }
@@ -55,6 +65,10 @@ input::placeholder,input {
     font-size:18px;
     background-color:var(--white);
 }
+input::placeholder{
+    font-size:18px;
+    background-color:var(--white);
+}
 .search-btn i,.reset-btn i{
     font-size: 22px;    
     background:var(--white);
@@ -76,12 +90,12 @@ input::placeholder,input {
 #text{
     margin-top:50px;
     text-align: center;
-    background-image: url("images/bgc-word.gif");background-position: center;
-    background-size: cover;background-clip: text;
-    color: transparent;
     font-size: 30px;
+    color:white;
 }
 .card-div{
+    padding: 20px 0px;
+    background-color: #F4F3F3;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -94,15 +108,16 @@ input::placeholder,input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color:var(--white);
+    color:var(--new-font-color);
+    background-color: var(--white);
     /* border: 1px solid red; */
     text-align: center;
-    backdrop-filter: blur(14px); 
-    background-color: rgba(255, 255, 255, 0.2); 
+    /* backdrop-filter: blur(10px); 
+    background-color: rgba(255, 255, 255, 0.2);  */
     border-radius: 12px;
 }
 .card:hover{
-    box-shadow:teal 0px 20px 30px -10px;
+    box-shadow:var(--key-letter) 0px 20px 30px -10px;
 }
 .title{
     font-size: 15px;
@@ -114,15 +129,16 @@ input::placeholder,input {
     border-radius: 12px;
 }
 .card button{
-    padding:10px 5px;
+   padding:10px 5px;
    border-radius: 12px;
    outline: 0;
-   color:var(--white);
-   /* background-color: var(--key-letter); */
+   color:var(--new-font-color);
+   background-color: var(--key-letter);
    border:2px solid var(--key-letter);
    background: transparent;
 }
 .card button:hover{
+    color:var(--white);
     background-color: var(--key-letter);
     transition: .1s ease-in-out;
 }
@@ -132,7 +148,7 @@ input::placeholder,input {
     border:1px solid var(--black);
     position: relative;
 }
-.popup-div img{
+.popup-div .book-img{
     width: 200px;
     height:100px;
     border-radius: 12px;
@@ -164,9 +180,9 @@ input::placeholder,input {
 .popup-container span{
     margin-top:10px;
 }
-.popup-container h1{
+.popup-container .author{
     font-size: 18px;
-    color:teal;
+    color:var(--white);
 }
 .fa-solid{
     font-size:30px;
@@ -175,7 +191,7 @@ input::placeholder,input {
     cursor:pointer;
 }
 .date{
-    color:var(--key-letter);
+    color:var(--btn-color);
     padding-bottom: 10px;
 }
 .publish{
